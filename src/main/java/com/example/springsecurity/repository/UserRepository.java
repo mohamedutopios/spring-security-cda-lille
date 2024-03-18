@@ -1,10 +1,12 @@
 package com.example.springsecurity.repository;
 
-import com.example.springsecurity.model.Product;
+import com.example.springsecurity.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    User findByEmail(String email);
+
 }
