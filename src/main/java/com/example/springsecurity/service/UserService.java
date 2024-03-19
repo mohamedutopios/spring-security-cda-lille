@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    
+
     @Autowired
     private JwtProvider jwtProvider;
 
@@ -54,13 +54,17 @@ public class UserService implements UserDetailsService {
 
     }
 
-
     public boolean checkUserNameExists(String email) {
         return userRepository.findByEmail(email).isPresent();
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        return userRepository.findByEmail(username).orElseThrow(()-> new UsernameNotFoundException("User not found with email : " + username));
     }
+
+
+
+
+
 }
